@@ -1,13 +1,13 @@
-package adapters;
+package bp.com.auth.adapters;
 
 import bp.com.auth.domain.User;
 import bp.com.auth.entity.UserEntity;
 import bp.com.auth.entity.repositories.UserEntityRepository;
 import bp.com.auth.rest.request.LoginRequest;
-import exeptions.NoUserFoundException;
+import bp.com.auth.exeptions.NoUserFoundException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import mappers.UserEntity2UserMapper;
+import bp.com.auth.mappers.UserEntity2UserMapper;
 import org.springframework.stereotype.Component;
 
 import java.util.List;

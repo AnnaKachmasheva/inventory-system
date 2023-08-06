@@ -1,6 +1,6 @@
 package bp.com.auth.useCases;
 
-import adapters.UserRepositoryAdapter;
+import bp.com.auth.adapters.UserRepositoryAdapter;
 import bp.com.auth.domain.User;
 import bp.com.auth.entity.enums.UserRole;
 import bp.com.auth.rest.request.RegistrationRequest;

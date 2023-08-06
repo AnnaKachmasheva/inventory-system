@@ -1,4 +1,4 @@
-package exeptions;
+package bp.com.auth.exeptions;
 
 public class NoUserFoundException extends RuntimeException {
 

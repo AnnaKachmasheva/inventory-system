@@ -1,4 +1,4 @@
-package mappers;
+package bp.com.auth.mappers;
 
 import bp.com.auth.domain.Permission;
 import bp.com.auth.entity.PermissionEntity;

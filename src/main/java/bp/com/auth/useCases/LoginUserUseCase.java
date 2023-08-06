@@ -1,6 +1,6 @@
 package bp.com.auth.useCases;
 
-import adapters.UserRepositoryAdapter;
+import bp.com.auth.adapters.UserRepositoryAdapter;
 import bp.com.auth.rest.request.LoginRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

@@ -1,7 +1,10 @@
-package mappers;
+package bp.com.auth.mappers;
 
 import bp.com.auth.domain.User;
 import bp.com.auth.entity.UserEntity;
+import bp.com.auth.mappers.Generator;
+import bp.com.auth.mappers.PermissionEntity2PermissionMapper;
+import bp.com.auth.mappers.UserEntity2UserMapper;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;

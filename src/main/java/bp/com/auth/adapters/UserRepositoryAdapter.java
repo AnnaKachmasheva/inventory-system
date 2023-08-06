@@ -1,4 +1,4 @@
-package adapters;
+package bp.com.auth.adapters;
 
 import bp.com.auth.domain.User;
 import bp.com.auth.rest.request.LoginRequest;
