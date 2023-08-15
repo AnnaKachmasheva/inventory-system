@@ -1,43 +1,26 @@
 package bp.com.auth.security;
 
-import bp.com.auth.entity.UserEntity;
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import bp.com.auth.models.domain.User;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
-import java.util.Objects;
 
 public class UserDetailsImpl implements UserDetails {
     private static final long serialVersionUID = 1L;
 
-    private Long id;
-    private String username;
-    private String email;
-
-    @JsonIgnore
-    private String password;
+    private User user;
 
     private static Collection<? extends GrantedAuthority> authorities;
 
-    public UserDetailsImpl(Long id,
-                           String username,
-                           String email,
-                           String password,
+    public UserDetailsImpl(User user,
                            Collection<? extends GrantedAuthority> authorities) {
-        this.id = id;
-        this.username = username;
-        this.email = email;
-        this.password = password;
+        this.user = user;
         this.authorities = authorities;
     }
 
-    public static UserDetailsImpl build(UserEntity user) {
-        return new UserDetailsImpl(
-                user.getId(),
-                user.getFirstName(),
-                user.getEmail(),
-                user.getPassword(),
+    public static UserDetailsImpl build(User user) {
+        return new UserDetailsImpl(user,
                 authorities);
     }
 
@@ -48,12 +31,20 @@ public class UserDetailsImpl implements UserDetails {
 
     @Override
     public String getPassword() {
-        return password;
+        return user.password();
+    }
+
+    public String getEmail() {
+        return user.email();
+    }
+
+    public User getUser() {
+        return user;
     }
 
     @Override
     public String getUsername() {
-        return username;
+        return null;
     }
 
     @Override
@@ -74,16 +65,6 @@ public class UserDetailsImpl implements UserDetails {
     @Override
     public boolean isEnabled() {
         return true;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o)
-            return true;
-        if (o == null || getClass() != o.getClass())
-            return false;
-        UserDetailsImpl user = (UserDetailsImpl) o;
-        return Objects.equals(id, user.id);
     }
 
 }

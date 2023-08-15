@@ -1,8 +1,9 @@
 package bp.com.auth.facades;
 
-import bp.com.auth.domain.User;
-import bp.com.auth.rest.request.LoginRequest;
-import bp.com.auth.rest.request.RegistrationRequest;
+import bp.com.auth.models.domain.User;
+import bp.com.auth.models.request.LoginRequest;
+import bp.com.auth.models.request.RegistrationRequest;
+import bp.com.auth.models.response.JwtAuthenticationResponse;
 import bp.com.auth.useCases.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -20,9 +21,15 @@ public class UserFacade {
     private final FindAllUsersUseCase findAllUsersUseCase;
     private final FindUserByIdUseCase findUserByIdUseCase;
 
-    public String login(LoginRequest loginRequest) {
+    public User registration(RegistrationRequest registrationRequest) {
+        return createUserUseCase.execute(registrationRequest);
+    }
+
+    public JwtAuthenticationResponse login(LoginRequest loginRequest) {
         return loginUserUseCase.execute(loginRequest);
     }
+
+
 
     public User create(User user) {
         return createUserUseCase.execute(user);
@@ -42,10 +49,6 @@ public class UserFacade {
 
     public User findById(Long id) {
         return findUserByIdUseCase.execute(id);
-    }
-
-    public Object registration(RegistrationRequest registrationRequest) {
-        return createUserUseCase.execute(registrationRequest);
     }
 
 

@@ -8,10 +8,26 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class ResetPasswordUseCase {
 
+    //todo
+
     private final UserRepositoryAdapter adapter;
 
-    public void execute(String password) {
-        adapter.resetPassword(password);
-    }
+//    public void execute(User user, String password) {
+//        User foundedUser = adapter.findById(user.getId());
+//        if (foundedUser == null) {
+//            throw new NoUserFoundException(user.getId());
+//        }
+//        String token = UUID.randomUUID().toString();
+//        createPasswordResetTokenForUser(user, token);
+//        mailSender.send(constructResetTokenEmail(getAppUrl(request),
+//                request.getLocale(), token, user));
+//
+//        adapter.resetPassword(password);
+//    }
+//
+//    public void createPasswordResetTokenForUser(User user, String token) {
+//        PasswordResetToken myToken = new PasswordResetToken(token, user);
+//        passwordTokenRepository.save(myToken);
+//    }
 
 }

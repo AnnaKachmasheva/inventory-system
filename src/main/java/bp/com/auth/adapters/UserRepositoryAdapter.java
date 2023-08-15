@@ -1,13 +1,13 @@
 package bp.com.auth.adapters;
 
-import bp.com.auth.domain.User;
-import bp.com.auth.rest.request.LoginRequest;
+import bp.com.auth.models.domain.User;
+import bp.com.auth.models.request.LoginRequest;
 
 import java.util.List;
 
 public interface UserRepositoryAdapter {
 
-    String login(LoginRequest loginRequest);
+    User login(LoginRequest loginRequest);
 
     User create(User user);
 
@@ -20,4 +20,5 @@ public interface UserRepositoryAdapter {
     User update(User user);
 
     void resetPassword(String password);
+
 }

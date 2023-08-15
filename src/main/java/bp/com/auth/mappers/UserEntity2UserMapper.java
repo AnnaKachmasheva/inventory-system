@@ -1,8 +1,8 @@
 package bp.com.auth.mappers;
 
-import bp.com.auth.domain.Permission;
-import bp.com.auth.domain.User;
-import bp.com.auth.entity.UserEntity;
+import bp.com.auth.models.entity.enums.Permission;
+import bp.com.auth.models.domain.User;
+import bp.com.auth.models.entity.UserEntity;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
@@ -13,11 +13,8 @@ import java.util.List;
 @RequiredArgsConstructor
 public class UserEntity2UserMapper {
 
-    private final PermissionEntity2PermissionMapper permissionEntity2PermissionMapper;
-
     public User toUser(UserEntity userEntity) {
         if (userEntity == null) return null;
-        List<Permission> permissions = permissionEntity2PermissionMapper.toPermissionSet(userEntity.getPermissions());
         return User.builder()
                 .id(userEntity.getId())
                 .firstName(userEntity.getFirstName())
@@ -27,7 +24,7 @@ public class UserEntity2UserMapper {
                 .role(userEntity.getRole().name())
                 .password(userEntity.getPassword())
                 .isDeleted(userEntity.isDeleted())
-                .permissions(permissions)
+                .permissions(userEntity.getPermissions())
                 .build();
     }
 

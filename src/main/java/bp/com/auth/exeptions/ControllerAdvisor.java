@@ -1,54 +1,46 @@
 package bp.com.auth.exeptions;
 
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
-import org.springframework.http.ResponseEntity;
-import org.springframework.context.support.DefaultMessageSourceResolvable;
-import org.springframework.web.bind.MethodArgumentNotValidException;
-import org.springframework.web.bind.annotation.ControllerAdvice;
+import org.springframework.web.ErrorResponse;
 import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.context.request.WebRequest;
+import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
+import java.net.URI;
+import java.time.Instant;
 
-@ControllerAdvice
+@RestControllerAdvice
 public class ControllerAdvisor extends ResponseEntityExceptionHandler {
 
+    @ExceptionHandler(UserAlreadyExistException.class)
+    ErrorResponse handlerUserAlreadyExistsException(UserAlreadyExistException e) {
+        return ErrorResponse.builder(e, HttpStatus.BAD_REQUEST, e.getMessage())
+                .title("Create user")
+                .type(URI.create("https://api.auth/errors/exists"))
+                .property("errorCategory", "Generic")
+                .property("timestamp", Instant.now())
+                .build();
+    }
+
     @ExceptionHandler(NoUserFoundException.class)
-    public ResponseEntity<Object> handlerNoUserFoundException(NoUserFoundException ex, WebRequest request) {
-        Map<String, Object> body = new LinkedHashMap<>();
-        body.put("timestamp", LocalDateTime.now());
-        body.put("message", "User not found");
-
-        return new ResponseEntity<>(body, HttpStatus.NOT_FOUND);
+    ErrorResponse handlerNoUserFoundException(NoUserFoundException e) {
+        return ErrorResponse.builder(e, HttpStatus.NOT_FOUND, e.getMessage())
+                .title("Get user")
+                .type(URI.create("https://api.auth/errors/notfound"))
+                .property("errorCategory", "Generic")
+                .property("timestamp", Instant.now())
+                .build();
     }
 
-    @Override
-    public ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex,
-                                                               HttpHeaders headers,
-                                                               HttpStatusCode status,
-                                                               WebRequest request) {
-
-        Map<String, Object> body = new LinkedHashMap<>();
-        body.put("timestamp", LocalDate.now());
-        body.put("status", status.value());
-
-        List<String> errors = ex.getBindingResult()
-                .getFieldErrors()
-                .stream()
-                .map(DefaultMessageSourceResolvable::getDefaultMessage)
-                .collect(Collectors.toList());
-
-        body.put("errors", errors);
-
-        return new ResponseEntity<>(body, HttpStatus.BAD_REQUEST);
+    @ExceptionHandler(PasswordNotMatchesException.class)
+    ErrorResponse handlerPasswordNotMatchesException(PasswordNotMatchesException e) {
+        return ErrorResponse.builder(e, HttpStatus.BAD_REQUEST, e.getMessage())
+                .title("Passwords not matches")
+                .type(URI.create("https://api.auth/errors/password"))
+                .property("errorCategory", "Generic")
+                .property("timestamp", Instant.now())
+                .build();
     }
+
 
 }
