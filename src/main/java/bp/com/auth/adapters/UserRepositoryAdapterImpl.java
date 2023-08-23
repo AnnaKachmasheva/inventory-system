@@ -75,7 +75,14 @@ public class UserRepositoryAdapterImpl implements UserRepositoryAdapter {
 
     @Override
     public User update(User user) {
-        return null;
+        Long idUser = user.id();
+        Optional<UserEntity> userEntityOptional = userEntityRepository.findById(idUser);
+        if (userEntityOptional.isEmpty())
+            throw new NoUserFoundException(idUser);
+
+        UserEntity userEntityToUpdate = user2UserEntityMapper.toUserEntity(user);
+        UserEntity updatedUserEntity = userEntityRepository.save(userEntityToUpdate);
+        return userEntity2UserMapper.toUser(updatedUserEntity);
     }
 
     @Override

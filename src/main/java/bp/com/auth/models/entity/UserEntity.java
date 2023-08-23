@@ -20,11 +20,10 @@ public class UserEntity extends BaseEntity {
     @Enumerated(EnumType.STRING)
     private UserRole role;
 
-    @ManyToMany
     private List<Permission> permissions;
-
-    @OneToMany(mappedBy = "user")
-    private List<TokenEntity> tokens;
+//
+//    @OneToMany(mappedBy = "user")
+//    private List<TokenEntity> tokens;
 
     @Column(name = "FIRST_NAME")
     private String firstName;
@@ -41,6 +40,5 @@ public class UserEntity extends BaseEntity {
     private String password;
 
     private boolean isDeleted;
-
 
 }

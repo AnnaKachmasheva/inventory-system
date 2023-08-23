@@ -10,13 +10,16 @@ import java.util.stream.Collectors;
 
 import static bp.com.auth.models.entity.enums.Permission.*;
 
+@Getter
 @RequiredArgsConstructor
 public enum UserRole {
+
     ROLE_USER(Set.of(
             USER_READ,
             USER_UPDATE,
             USER_DELETE,
             USER_CREATE)),
+
     ROLE_ADMIN(Set.of(
             ADMIN_READ,
             ADMIN_UPDATE,
@@ -28,7 +31,6 @@ public enum UserRole {
             USER_CREATE
     ));
 
-    @Getter
     private final Set<Permission> permissions;
 
     public List<SimpleGrantedAuthority> getAuthorities() {

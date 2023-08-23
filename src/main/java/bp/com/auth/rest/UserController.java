@@ -24,6 +24,13 @@ public interface UserController {
     public ResponseEntity<?> authenticate(LoginRequest loginRequest);
 
     /**
+     * GET user/api/current
+     *
+     * @return
+     */
+    public ResponseEntity<?> getCurrentUser();
+
+    /**
      * POST user/api/users
      *
      * @param user
@@ -37,7 +44,7 @@ public interface UserController {
      * @param user
      * @return
      */
-    public ResponseEntity<?> update(User user);
+    public ResponseEntity<?> update(Long id, User user);
 
     /**
      * POST user/api/reset-password

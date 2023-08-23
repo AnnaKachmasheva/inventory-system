@@ -7,17 +7,24 @@ import bp.com.auth.models.entity.UserEntity;
 import bp.com.auth.repositories.UserEntityRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 @Service
-@RequiredArgsConstructor
 public class UserDetailsServiceImpl implements UserDetailsService {
 
-    UserEntityRepository userRepository;
-    UserEntity2UserMapper userEntity2UserMapper;
+    private UserEntityRepository userRepository;
+    private UserEntity2UserMapper userEntity2UserMapper;
+
+    @Autowired
+    public UserDetailsServiceImpl(UserEntityRepository userRepository,
+                                  UserEntity2UserMapper userEntity2UserMapper) {
+        this.userRepository = userRepository;
+        this.userEntity2UserMapper = userEntity2UserMapper;
+    }
 
     @Override
     @Transactional

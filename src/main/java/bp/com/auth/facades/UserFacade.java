@@ -16,6 +16,7 @@ public class UserFacade {
 
     private final LoginUserUseCase loginUserUseCase;
     private final CreateUserUseCase createUserUseCase;
+    private final GetCurrentUserUseCase getCurrentUserUseCase;
     private final UpdateUserUseCase updateUserUseCase;
     private final DeleteUserUseCase deleteUserUseCase;
     private final FindAllUsersUseCase findAllUsersUseCase;
@@ -29,7 +30,9 @@ public class UserFacade {
         return loginUserUseCase.execute(loginRequest);
     }
 
-
+    public User current() {
+        return getCurrentUserUseCase.execute();
+    }
 
     public User create(User user) {
         return createUserUseCase.execute(user);

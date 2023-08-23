@@ -6,6 +6,7 @@ import bp.com.auth.models.request.LoginRequest;
 import bp.com.auth.models.request.RegistrationRequest;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,18 +20,30 @@ public class UserControllerImpl implements UserController {
     private final UserFacade userFacade;
 
     @Override
-    @PostMapping(value = "/registration")
+    @PostMapping(
+            value = "/registration",
+            produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> registration(@Valid @RequestBody RegistrationRequest registrationRequest) {
         User savedUser = userFacade.registration(registrationRequest);
         return ResponseEntity.ok().body(savedUser);
     }
 
-
     @Override
-    @PostMapping(value = "/login")
+    @PostMapping(
+            value = "/login",
+            produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> authenticate(@Valid @RequestBody LoginRequest loginRequest) {
         return ResponseEntity.ok().body(userFacade.login(loginRequest));
     }
+
+    @Override
+    @GetMapping(
+            value = "/current",
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<?> getCurrentUser() {
+        return ResponseEntity.ok().body(userFacade.current());
+    }
+
 
     @Override
     @PostMapping(value = "/users")
@@ -40,8 +53,11 @@ public class UserControllerImpl implements UserController {
     }
 
     @Override
-    public ResponseEntity<?> update(@Valid @RequestBody User user) {
-        return null;
+    @PutMapping(value = "/user/{id}")
+    public ResponseEntity<?> update(@PathVariable Long id,
+                                    @Valid @RequestBody User user) {
+        User upatedUser = userFacade.update(user);
+        return ResponseEntity.ok().body(upatedUser);
     }
 
     @Override

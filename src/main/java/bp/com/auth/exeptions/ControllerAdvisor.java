@@ -42,5 +42,14 @@ public class ControllerAdvisor extends ResponseEntityExceptionHandler {
                 .build();
     }
 
+    @ExceptionHandler(BadCredentialsException.class)
+    ErrorResponse handlerBadCredentialsException(BadCredentialsException e) {
+        return ErrorResponse.builder(e, HttpStatus.BAD_REQUEST, e.getMessage())
+                .title("BAd credentials")
+                .type(URI.create("https://api.auth/errors/credentials"))
+                .property("errorCategory", "Generic")
+                .property("timestamp", Instant.now())
+                .build();
+    }
 
 }
