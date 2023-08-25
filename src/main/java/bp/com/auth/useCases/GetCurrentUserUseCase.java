@@ -10,10 +10,8 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class GetCurrentUserUseCase {
 
-    private UserDetailsImpl userDetails;
-
     public User execute() {
-        return userDetails.getUser();
+        return null;
     }
 
 }

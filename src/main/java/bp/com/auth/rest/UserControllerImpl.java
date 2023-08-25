@@ -8,6 +8,8 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
@@ -41,7 +43,8 @@ public class UserControllerImpl implements UserController {
             value = "/current",
             produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> getCurrentUser() {
-        return ResponseEntity.ok().body(userFacade.current());
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        return ResponseEntity.ok().body(authentication.getPrincipal());
     }
 
 

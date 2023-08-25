@@ -1,0 +1,28 @@
+$background-color: #ffffff;
+$text-color: #000000;
+$btn-width: 120px;
+$btn-height: 40px;
+$block-padding: 60px;
+
+$primary-btn-color: #F2994A;
+$primary-btn-color-hover: #f38e32;
+$primary-btn-color-active: #f1811c;
+
+
+$form-sub-tile-color: #4F4F4F;
+
+
+
+.btn-primary {
+  background: $primary-btn-color;
+  border: 0;
+
+  &:hover {
+    background: $primary-btn-color-hover;
+  }
+
+}
+
+.form-subtitle{
+  color: $form-sub-tile-color;
+}
