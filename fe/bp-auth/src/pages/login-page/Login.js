@@ -1,86 +1,132 @@
-import React, {useState} from "react"
+import React from "react"
 import {Link} from "react-router-dom";
+import {ErrorMessage, Field, Form, Formik} from "formik";
+import * as Yup from 'yup';
 
 function Login(props) {
 
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
+    const initialValues = {
+        email: '',
+        password: '',
+    };
 
-    const [error, setError] = useState('');
+    const validationSchema = Yup.object().shape({
+        email: Yup.string()
+            .required('Email is required')
+            .email('Invalid email'),
+        password: Yup.string()
+            .required('Password is required')
+            .min(8, 'Too short'),
+    });
 
+    const handleSubmit = async (values) => {
+        try {
+            const validatedData = await validationSchema.validate(values);
+            // Send validated data to server
+        } catch (error) {
+            // Handle validation error
+        }
+    };
 
     return (
-        <form className={'container'}>
+        <form className={'container w-100'}>
 
-            <div className={'form-container'}>
-                <form className={'form'}>
+            <div className={'form-container '}>
+                <div className={'logo'}>logo</div>
 
-                    <h1 className={'form-title'}>Welcome back!</h1>
-                    <p className={'form-subtitle'}>Log in to your account.</p>
+                <div className={'position-relative'}>
+                    <div className={'position-relative mt-5 pt-3'}>
 
-                    <div className={'form-group mt-3'}>
-                        <label>Email address</label>
-                        <input
-                            type={'email'}
-                            className={'form-control mt-1'}
-                            placeholder={'Enter email'}
-                            autoComplete={'email'}
-                            value={email}
-                            onChange={(e) => setEmail(e.target.value)}
-                            required
-                        />
+                        <h1 className={'form-title'}>Welcome back!</h1>
+                        <p className={'form-subtitle pb-2'}>Log in to your account.</p>
+
+                        <Formik
+                            initialValues={initialValues}
+                            validationSchema={validationSchema}
+                            onSubmit={handleSubmit}
+                        >
+                            {({values, errors, touched}) => (
+                                <Form>
+
+                                    <div className={'form-group p-2'}>
+                                        <label>Email address*</label>
+                                        <Field
+                                            type={'email'}
+                                            className={'form-control '
+                                                + (values.email === '' && !touched.email ?
+                                                    null :
+                                                    (touched.email && errors.email ?
+                                                        'is-invalid' :
+                                                        'is-valid'))}
+                                            placeholder={'Enter email'}
+                                            name={'email'}
+                                            required
+                                        />
+                                        <div className={'invalid-feedback'}>
+                                            <ErrorMessage name="email"/>
+                                        </div>
+                                    </div>
+
+                                    <div className="form-group p-2">
+                                        <label>Password*</label>
+                                        <Field
+                                            type={'password'}
+                                            className={'form-control '
+                                                + (values.password === '' && !touched.password ?
+                                                    null :
+                                                    (touched.password && errors.password ?
+                                                        'is-invalid' :
+                                                        'is-valid'))}
+                                            placeholder={'Enter password'}
+                                            name={'password'}
+                                            required
+                                        />
+                                        <div className={'invalid-feedback'}>
+                                            <ErrorMessage name="password"/>
+                                        </div>
+                                    </div>
+
+                                    <div className={'row w-100 mt-1 p-2'}>
+
+                                        <div className={'col float-start d-inline'}>
+                                            <input className={'form-check-input '}
+                                                   type={'checkbox'}/>
+                                            <label className={'remember-me text-right d-inline m-lg-2'}>
+                                                Remember me
+                                            </label>
+                                        </div>
+
+                                        <div className={'col float-end p-0'}>
+                                            <p className={'forgot-password text-end'}>
+                                                <Link to={'/reset-password'}>
+                                                    Fogot password?
+                                                </Link>
+                                            </p>
+                                        </div>
+
+                                    </div>
+
+                                    <div className={'p-2'}>
+                                        <button type={'submit'}
+                                                className={'btn btn-primary'}>
+                                            Contune
+                                        </button>
+                                    </div>
+
+                                </Form>
+                            )}
+                        </Formik>
                     </div>
+                </div>
 
-                    <div className="form-group mt-3">
-                        <label>Password</label>
-                        <input
-                            type={'password'}
-                            className={'form-control mt-1'}
-                            placeholder={'Enter password'}
-                            autoComplete={'password'}
-                            value={password}
-                            onChange={(e) => setPassword(e.target.value)}
-                            required
-                        />
-                    </div>
-
-                    <div className={'row mt-2 w-100'}>
-                        <div className={'col-4 float-start'}>
-                            <input className={'form-check-input'}
-                                   type={'checkbox'}/>
-                            <label className={'remember-me text-right'}>
-                                Remember me
-                            </label>
-                        </div>
-
-                        <div className={'col-4 float-end'}>
-                            <p className={'forgot-password text-end'}>
-                                <Link to={'/reset-password'}>
-                                    Fogot password?
-                                </Link>
-                            </p>
-                        </div>
-
-                    </div>
-
-
-                    <div className={'d-grid gap-2'}>
-                        <button type={'submit'}
-                                className={'btn btn-primary'}>
-                            Contune
-                        </button>
-                    </div>
-
-                </form>
-
-                <p className="registration">
+                <p className="text-center">
                     New here?
                     <Link to={'/registrtaion'}>Create your account now</Link>
                 </p>
 
             </div>
 
-            <div className={'image'}></div>
+            <div className={'image-form w-50'}></div>
 
         </form>
     )
