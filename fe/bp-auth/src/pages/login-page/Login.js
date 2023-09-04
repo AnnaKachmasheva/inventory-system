@@ -8,6 +8,7 @@ function Login(props) {
     const initialValues = {
         email: '',
         password: '',
+        rememberMe: false
     };
 
     const validationSchema = Yup.object().shape({
@@ -19,13 +20,31 @@ function Login(props) {
             .min(8, 'Too short'),
     });
 
-    const handleSubmit = async (values) => {
-        try {
-            const validatedData = await validationSchema.validate(values);
-            // Send validated data to server
-        } catch (error) {
-            // Handle validation error
-        }
+    // const handleSubmit = async (values) => {
+    //     try {
+    //
+    //         const validatedData = await validationSchema.validate(values);
+    //
+    //
+    //         // Send validated data to server
+    //         alert(JSON.stringify(validatedData));
+    //
+    //     } catch (error) {
+    //         // Handle validation error
+    //     }
+    // };
+
+    const handleSubmit = (values) => {
+
+        // if (values.rememberMe) {
+        //     localStorage.setItem("rememberMe", values.rememberMe);
+        //     localStorage.setItem("email", values.email);
+        //     localStorage.setItem("password", values.password);
+        //
+        //     console.log('localstorage')
+        // }
+
+        alert(JSON.stringify(values));
     };
 
     return (
@@ -46,7 +65,7 @@ function Login(props) {
                             onSubmit={handleSubmit}
                         >
                             {({values, errors, touched}) => (
-                                <Form>
+                                <Form onSubmit={handleSubmit}>
 
                                     <div className={'form-group p-2'}>
                                         <label>Email address*</label>
@@ -89,8 +108,10 @@ function Login(props) {
                                     <div className={'row w-100 mt-1 p-2'}>
 
                                         <div className={'col float-start d-inline'}>
-                                            <input className={'form-check-input '}
-                                                   type={'checkbox'}/>
+                                            <Field className={'form-check-input '}
+                                                   type={'checkbox'}
+                                                   name={'rememberMe'}
+                                                   checked={values.rememberMe}/>
                                             <label className={'remember-me text-right d-inline m-lg-2'}>
                                                 Remember me
                                             </label>
@@ -119,10 +140,12 @@ function Login(props) {
                     </div>
                 </div>
 
-                <p className="text-center">
-                    New here?
-                    <Link to={'/registrtaion'}>Create your account now</Link>
-                </p>
+                <div className="text-center">
+                    <p>
+                        New here?
+                        <Link to={'/registrtaion'}>Create your account now</Link>
+                    </p>
+                </div>
 
             </div>
 
