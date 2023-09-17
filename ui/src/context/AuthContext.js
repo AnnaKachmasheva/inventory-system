@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useState, useEffect } from 'react'
 
-const AuthContext = createContext()
+const AuthContext = createContext(undefined);
 
 function AuthProvider({ children }) {
   const [user, setUser] = useState(null)
@@ -24,7 +24,7 @@ function AuthProvider({ children }) {
   }
 
   const userLogout = () => {
-    localStorage.removeItem('user')
+    localStorage.removeItem('token')
     setUser(null)
   }
 

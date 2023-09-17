@@ -1,8 +1,9 @@
 import axios from "axios";
-import {API_BASE_URL, API_LOGIN} from "../consts/Consts";
+import {API_BASE_URL, API_LOGIN, API_REGISTRATION} from "../consts/Consts";
 
 export const userApi = {
-    login
+    login,
+    registration
 }
 
 function login(email, password) {
@@ -18,6 +19,27 @@ function login(email, password) {
         {
             headers: {'Content-type': 'application/json'}
         })
+
+}
+
+function registration(user) {
+
+    const registrationRequest = {
+        "firstName": user.firstName,
+        "lastName": user.lastName,
+        "email": user.email,
+        "password": user.password,
+        "matchingPassword": user.repeatPassword
+    };
+
+    return instance.post(
+        API_REGISTRATION,
+        registrationRequest,
+        {
+            headers: {'Content-type': 'application/json'}
+        }
+    );
+
 }
 
 

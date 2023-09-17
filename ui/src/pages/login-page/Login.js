@@ -9,6 +9,7 @@ function Login() {
 
     const Auth = useAuth();
     const isLoggedIn = Auth.userIsAuthenticated();
+
     const [isBadRequest, setBadRequest] = useState(false);
 
     const initialValues = {
@@ -46,9 +47,12 @@ function Login() {
             const response = await userApi.login(email, password);
             const accessToken = response.data;
 
+            console.log(accessToken)
+
             Auth.userLogin(accessToken);
         } catch (error) {
-            setBadRequest(true);
+            setBadRequest(true)
+            console.log('error')
         }
 
     }

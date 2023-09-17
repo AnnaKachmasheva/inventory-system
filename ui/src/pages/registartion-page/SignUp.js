@@ -1,12 +1,14 @@
 import React, {useState} from "react"
-import {Link} from "react-router-dom";
+import {Link, Navigate} from "react-router-dom";
 import {ErrorMessage, Field, Form, Formik} from "formik";
 import * as Yup from 'yup';
 import {BsCheckCircle} from "react-icons/bs";
 import classnames from 'classnames';
+import {userApi} from "../../services/api";
+import {AuthProvider, useAuth} from "../../context/AuthContext";
 
 
-function SignUp(props) {
+function SignUp() {
 
     const initialValues = {
         firstName: '',
@@ -15,7 +17,6 @@ function SignUp(props) {
         password: '',
         repeatPassword: ''
     };
-
 
     const validationSchema = Yup.object().shape({
         email: Yup.string()
@@ -38,6 +39,8 @@ function SignUp(props) {
     const [twoConditionsForPassword, setTwoConditionsForPassword] = useState(false)
     const [fourConditionsForPassword, setFourConditionsForPassword] = useState(false)
     const [fiveConditionsForPassword, setFiveConditionsForPassword] = useState(false)
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
 
 
     const handleChangePassword = (e) => {
@@ -71,21 +74,49 @@ function SignUp(props) {
 
     }
 
-    const handleSubmit = async (values) => {
-        const user = {values};
+    const Auth = useAuth();
+    const [isBadRequest, setBadRequest] = useState(false);
 
-        console.log(values);
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        const firstName = e.target.firstName.value;
+        const lastName = e.target.lastName.value;
+        const email = e.target.email.value;
+        const password = e.target.password.value;
+        const repeatPassword = e.target.repeatPassword.value;
+
+        const user = {firstName, lastName, email, password, repeatPassword};
 
         try {
+            const responseRegistration = await userApi.registration(user);
 
-            // Send validated data to server
-            alert(JSON.stringify(values));
+            try {
+                const responseLogin = await userApi.login(email, password);
+                const token = responseLogin.data;
+                Auth.userLogin(token);
+            } catch (error) {
+                console.log('error login')
+            }
 
         } catch (error) {
-            // Handle validation error
+            setBadRequest(true)
+            console.log('error registration')
         }
     };
 
+    if (email !== '' && password !== '') {
+        const response = userApi.login(email, password);
+        const accessToken = response.data;
+
+        AuthProvider.userLogin(accessToken);
+    }
+
+    const isLoggedIn = Auth.userIsAuthenticated();
+
+    if (isLoggedIn) {
+        return <Navigate to='/'/>
+    }
 
     return (
         <div className={'container'}>
@@ -104,6 +135,12 @@ function SignUp(props) {
                     >
                         {({values, errors, touched, isValid, dirty}) => (
                             <Form onSubmit={handleSubmit}>
+
+                                <span
+                                    className={isBadRequest ? 'error-span' : 'hidden-span'}>
+                                    Wrong data
+                                </span>
+
 
                                 <div className={'form-group'}>
                                     <label>First name</label>
