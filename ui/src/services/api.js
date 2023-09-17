@@ -1,5 +1,5 @@
 import axios from "axios";
-import {API_BASE_URL} from "../consts/consts";
+import {API_BASE_URL, API_LOGIN} from "../consts/Consts";
 
 export const userApi = {
     login
@@ -7,18 +7,19 @@ export const userApi = {
 
 function login(email, password) {
 
+    const loginRequest = {
+        "email": email,
+        "password": password
+    };
+
     return instance.post(
-        '/api/v1/auth/signin',
+        API_LOGIN,
+        loginRequest,
         {
-            "email": email,
-            "password": password
-        }.then(response => {
-            if (response.data.accessToken) {
-                localStorage.setItem('user', JSON.stringify(response.data));
-            }
-            return response.data
-        }));
+            headers: {'Content-type': 'application/json'}
+        })
 }
+
 
 const instance = axios.create({
     baseURL: API_BASE_URL

@@ -199,4 +199,13 @@ html, body, div {
     background-color: $primary-btn-color-disable;
   }
 
+  .error-span {
+    font-size: 16px;
+    color: #dc3545;
+  }
+
+  .hidden-span {
+    display:none;
+  }
+
 }

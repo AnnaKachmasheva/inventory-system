@@ -15,23 +15,12 @@ function AuthProvider({ children }) {
   }
 
   const userIsAuthenticated = () => {
-    let storedUser = localStorage.getItem('user')
-    if (!storedUser) {
-      return false
-    }
-    storedUser = JSON.parse(storedUser)
-
-    // if user has token expired, logout user
-    if (Date.now() > storedUser.data.exp * 1000) {
-      userLogout()
-      return false
-    }
-    return true
+    return localStorage.getItem('token');
   }
 
-  const userLogin = user => {
-    localStorage.setItem('user', JSON.stringify(user))
-    setUser(user)
+  const userLogin = token => {
+    localStorage.setItem('token', JSON.stringify(token))
+    setUser(token)
   }
 
   const userLogout = () => {

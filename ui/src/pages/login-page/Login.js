@@ -1,10 +1,15 @@
-import React from "react"
-import {Link} from "react-router-dom";
+import React, {useState} from "react"
+import {Link, Navigate} from "react-router-dom";
 import {ErrorMessage, Field, Form, Formik} from "formik";
 import * as Yup from 'yup';
-import {parseJwt, userApi} from "../../services/api";
+import {userApi} from "../../services/api";
+import {useAuth} from "../../context/AuthContext";
 
 function Login() {
+
+    const Auth = useAuth();
+    const isLoggedIn = Auth.userIsAuthenticated();
+    const [isBadRequest, setBadRequest] = useState(false);
 
     const initialValues = {
         email: localStorage.getItem('email') != null ? localStorage.getItem('email') : '',
@@ -22,14 +27,14 @@ function Login() {
     });
 
 
-    const handleSubmit = async (values) => {
-        values.preventDefault();
+    const handleSubmit = async (e) => {
+        e.preventDefault();
 
-        const rememberMe = values.rememberMe;
-        const email = values.email;
-        const password = values.password;
+        const rememberMe = e.target.rememberMe.value;
+        const email = e.target.email.value;
+        const password = e.target.password.value;
 
-        if (!values.rememberMe) {
+        if (!rememberMe) {
             localStorage.clear()
         } else {
             localStorage.setItem("rememberMe", rememberMe);
@@ -39,15 +44,17 @@ function Login() {
 
         try {
             const response = await userApi.login(email, password);
-            const {accessToken} = response.data
-            const data = parseJwt(accessToken)
-            const authenticatedUser = {data, accessToken}
-        } catch (error) {
-            console.log("log error")
+            const accessToken = response.data;
 
-            // todo error handler
-            // handlerError(error);
+            Auth.userLogin(accessToken);
+        } catch (error) {
+            setBadRequest(true);
         }
+
+    }
+
+    if (isLoggedIn) {
+        return <Navigate to='/'/>
     }
 
     return (
@@ -73,6 +80,11 @@ function Login() {
                               dirty
                           }) => (
                             <Form onSubmit={handleSubmit}>
+
+                                <span
+                                    className={isBadRequest ? 'error-span' : 'hidden-span'}>
+                                    Wrong email or password
+                                </span>
 
                                 <div className={'form-group'}>
                                     <label>Email address*</label>
@@ -149,7 +161,6 @@ function Login() {
                         <Link to={'/registrtaion'}>Create your account now</Link>
                     </p>
                 </div>
-
             </div>
 
             <div className={'image-form'}></div>
