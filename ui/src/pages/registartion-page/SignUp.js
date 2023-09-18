@@ -2,10 +2,10 @@ import React, {useState} from "react"
 import {Link, Navigate} from "react-router-dom";
 import {ErrorMessage, Field, Form, Formik} from "formik";
 import * as Yup from 'yup';
-import {BsCheckCircle} from "react-icons/bs";
+import {BsCheckCircleFill} from "react-icons/bs";
 import classnames from 'classnames';
 import {userApi} from "../../services/api";
-import {AuthProvider, useAuth} from "../../context/AuthContext";
+import {useAuth} from "../../context/AuthContext";
 
 
 function SignUp() {
@@ -39,8 +39,6 @@ function SignUp() {
     const [twoConditionsForPassword, setTwoConditionsForPassword] = useState(false)
     const [fourConditionsForPassword, setFourConditionsForPassword] = useState(false)
     const [fiveConditionsForPassword, setFiveConditionsForPassword] = useState(false)
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
 
 
     const handleChangePassword = (e) => {
@@ -104,13 +102,6 @@ function SignUp() {
             console.log('error registration')
         }
     };
-
-    if (email !== '' && password !== '') {
-        const response = userApi.login(email, password);
-        const accessToken = response.data;
-
-        AuthProvider.userLogin(accessToken);
-    }
 
     const isLoggedIn = Auth.userIsAuthenticated();
 
@@ -237,22 +228,22 @@ function SignUp() {
                                             <div className={
                                                 classnames('row',
                                                     min8Characters ? 'success-color-span' : 'default-color-span')}>
-                                                <BsCheckCircle size={22}
+                                                <BsCheckCircleFill size={22}
                                                                className={classnames('rule-icon ',
                                                                    min8Characters ?
-                                                                       'success-color-span' :
-                                                                       'default-color-span')}/>
+                                                                       'success-color-icon' :
+                                                                       'default-color-icon')}/>
                                                 <span className={'w-auto'}>Min. 8 characters</span>
                                             </div>
 
                                             <div className={
                                                 classnames('row',
                                                     hasNumber ? 'success-color-span' : 'default-color-span')}>
-                                                <BsCheckCircle size={22}
+                                                <BsCheckCircleFill size={22}
                                                                className={classnames('rule-icon ',
                                                                    hasNumber ?
-                                                                       'success-color-span' :
-                                                                       'default-color-span')}/>
+                                                                       'success-color-icon' :
+                                                                       'default-color-icon')}/>
                                                 <span className={'w-auto'}>
                                                         A number
                                                     </span>
@@ -265,33 +256,33 @@ function SignUp() {
                                             <div className={
                                                 classnames('row',
                                                     hasUppercaseLetter ? 'success-color-span' : 'default-color-span')}>
-                                                <BsCheckCircle size={22}
+                                                <BsCheckCircleFill size={22}
                                                                className={classnames('rule-icon ',
                                                                    hasUppercaseLetter ?
-                                                                       'success-color-span' :
-                                                                       'default-color-span')}/>
+                                                                       'success-color-icon' :
+                                                                       'default-color-icon')}/>
                                                 <span className={'w-auto'}>A uppercase letter</span>
                                             </div>
 
                                             <div className={
                                                 classnames('row',
                                                     hasLowercaseLetter ? 'success-color-span' : 'default-color-span')}>
-                                                <BsCheckCircle size={22}
+                                                <BsCheckCircleFill size={22}
                                                                className={classnames('rule-icon ',
                                                                    hasLowercaseLetter ?
-                                                                       'success-color-span' :
-                                                                       'default-color-span')}/>
+                                                                       'success-color-icon' :
+                                                                       'default-color-icon')}/>
                                                 <span className={'w-auto'}>A lowercase letter</span>
                                             </div>
 
                                             <div className={
                                                 classnames('row',
                                                     hasSymbol ? 'success-color-span' : 'default-color-span')}>
-                                                <BsCheckCircle size={22}
+                                                <BsCheckCircleFill size={22}
                                                                className={classnames('rule-icon ',
                                                                    hasSymbol ?
-                                                                       'success-color-span' :
-                                                                       'default-color-span')}/>
+                                                                       'success-color-icon' :
+                                                                       'default-color-icon')}/>
                                                 <span className={'w-auto'}>A special symbol</span>
                                             </div>
 
