@@ -3,9 +3,9 @@ import {Link} from "react-router-dom";
 import {useAuth} from "../../context/AuthContext";
 
 
-function Home(props) {
+function Home() {
 
-    const {getUser, userIsAuthenticated, userLogout} = useAuth()
+    const {getUserToken, userIsAuthenticated, userLogout} = useAuth()
 
     const enterMenuStyle = () => {
         return userIsAuthenticated() ? {"display": "none"} : {"display": "block"}
@@ -20,8 +20,8 @@ function Home(props) {
     }
 
     const getUserName = () => {
-        const user = getUser()
-        return user ? user.data.name : ''
+        const user = getUserToken()
+        return user ? user.firstName : ''
     }
 
     return (
@@ -38,7 +38,7 @@ function Home(props) {
             </p>
 
             <p>
-                <Link to={'/registrtaion'}
+                <Link to={'/registration'}
                       style={enterMenuStyle()}>
                     Registration
                 </Link>

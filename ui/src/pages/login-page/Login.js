@@ -80,8 +80,7 @@ function Login() {
                               values,
                               errors,
                               touched,
-                              isValid,
-                              dirty
+                              isValid
                           }) => (
                             <Form onSubmit={handleSubmit}>
 
