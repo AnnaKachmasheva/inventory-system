@@ -10,8 +10,8 @@ function AuthProvider({ children }) {
     setUser(storedUser)
   }, [])
 
-  const getUser = () => {
-    return JSON.parse(localStorage.getItem('user'))
+  const getUserToken = () => {
+    return JSON.parse(localStorage.getItem('token'))
   }
 
   const userIsAuthenticated = () => {
@@ -30,7 +30,7 @@ function AuthProvider({ children }) {
 
   const contextValue = {
     user,
-    getUser,
+    getUserToken,
     userIsAuthenticated,
     userLogin,
     userLogout,

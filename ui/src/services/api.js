@@ -1,9 +1,10 @@
 import axios from "axios";
-import {API_BASE_URL, API_LOGIN, API_REGISTRATION} from "../consts/Consts";
+import {API_BASE_URL, API_LOGIN, API_REGISTRATION, API_USER_PROFILE} from "../consts/Consts";
 
 export const userApi = {
     login,
-    registration
+    registration,
+    currentUser
 }
 
 function login(email, password) {
@@ -42,10 +43,26 @@ function registration(user) {
 
 }
 
+function currentUser(token) {
+
+    const userToken = bearerAuth(token)
+
+    return instance.get(
+        API_USER_PROFILE,
+        {
+            headers: {'Authorization': userToken}
+        }
+    );
+
+}
 
 const instance = axios.create({
     baseURL: API_BASE_URL
 })
+
+function bearerAuth(token) {
+    return `Bearer ${token.token}`
+}
 
 instance.interceptors.request.use(function (config) {
     // If token is expired, redirect user to login
