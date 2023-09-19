@@ -217,42 +217,6 @@ html, body, div {
   }
 }
 
-
-// user-profile
-.user-info {
-  display: flex;
-  flex-direction: row;
-
-  width: 50vw;
-  font-size: 2vh;
-
-  ul {
-    flex: 50%;
-    width: auto;
-
-    .title {
-      color: $form-sub-tile-color;
-    }
-
-    li {
-      padding-top: 2vh;
-    }
-  }
-
-  .edit-btn {
-    height: 5vh;
-    width: 20vw;
-    align-self: flex-end;
-  }
-
-  margin: 6em;
-  padding: 4em;
-}
-
-ul {
-  list-style-type: none;
-}
-
 // sidebar
 
 .sidebar-container {
@@ -311,9 +275,18 @@ ul {
 
 // main style
 
-.content {
+.content-container{
   display: flex;
   flex-direction: row;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+
+  .content-info {
+
+  }
 }
 
 .header {
@@ -329,4 +302,50 @@ ul {
   color: $form-sub-tile-color;
 
   font-size: 1.5em;
+}
+
+// casds
+
+.card-title-container {
+  display: inline-flex;
+
+  button {
+    width: auto;
+  }
+}
+
+// user-profile
+.user-info {
+  display: flex;
+  flex-direction: row;
+
+  font-size: 2vh;
+
+  ul {
+    flex: 50%;
+    width: auto;
+
+    .title {
+      color: $form-sub-tile-color;
+    }
+
+    li {
+      padding-top: 2vh;
+    }
+  }
+
+  .buttons-container {
+    align-self: flex-end;
+
+    display: flex;
+    flex-direction: column;
+
+    button {
+      margin: 1vh 1vw;
+    }
+  }
+}
+
+ul {
+  list-style-type: none;
 }

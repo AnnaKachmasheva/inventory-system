@@ -161,7 +161,7 @@ function Login() {
                 <div className="text-center">
                     <p>
                         New here?
-                        <Link to={'/registrtaion'}>Create your account now</Link>
+                        <Link to={'/registration'}>Create your account now</Link>
                     </p>
                 </div>
             </div>
