@@ -2,7 +2,6 @@ import React, {useEffect, useState} from "react"
 import {useAuth} from "../../context/AuthContext";
 import Sidebar from "../../components/Sidebar";
 
-
 function Users() {
 
     const Auth = useAuth();

@@ -31,6 +31,7 @@ html, body, div {
 }
 
 // BUTTONS
+
 .btn-primary {
   background: $primary-btn-color;
   border: 0;
@@ -39,7 +40,6 @@ html, body, div {
 .btn-primary:hover {
   background: $primary-btn-color-hover;
 }
-
 
 .btn-primary:not(:disabled):not(:disabled):active {
   background: $primary-btn-color-hover;
@@ -55,6 +55,7 @@ html, body, div {
 
   width: 100%;
   max-width: none;
+
   gap: 0;
   right: 0;
   left: 0;
@@ -100,8 +101,7 @@ html, body, div {
     }
 
     .form-group {
-      padding-top: 1vh;
-      padding-bottom: 1vh;
+      padding: 1vh 0;
     }
 
     .email-subtitle {
@@ -118,6 +118,7 @@ html, body, div {
   .image-form {
     height: 100vh;
     width: 50vw;
+
     background: aliceblue;
 
     @media (max-width: $mediaBp1Width) {
@@ -130,11 +131,11 @@ html, body, div {
     width: auto;
     min-height: 15vh;
     margin-top: 1vh;
-    text-align: center;
+    padding: 0 1em 0 1em;
 
+    text-align: center;
     background: $tips-bg-color;
     border-radius: 10px;
-    padding: 0 1em 0 1em;
 
     .password-rules-progress {
       width: 100%;
@@ -164,6 +165,7 @@ html, body, div {
     .rules {
       margin: 0 auto;
       width: auto;
+
       color: $form-sub-tile-color;
 
       .column-rules {
@@ -217,8 +219,7 @@ html, body, div {
   }
 }
 
-// sidebar
-
+// SIDEBAR
 .sidebar-container {
   z-index: 2;
 
@@ -243,8 +244,8 @@ html, body, div {
       text-decoration: none;
       color: white;
       font-size: 26px;
-      margin-right: 1em;
 
+      margin-right: 1em;
       padding: 10px;
       width: 100%;
 
@@ -261,10 +262,11 @@ html, body, div {
   }
 
   .sidebar-icon {
-    color: white;
     width: fit-content;
     margin: 0 1em;
     padding: 0;
+
+    color: white;
   }
 
   p {
@@ -273,8 +275,7 @@ html, body, div {
 
 }
 
-// main style
-
+// GLOBAL
 .content-container{
   display: flex;
   flex-direction: row;
@@ -285,7 +286,9 @@ html, body, div {
   flex-direction: column;
 
   .content-info {
-
+    width: 80%;
+    margin: 0 auto;
+    padding-top: 6vh;
   }
 }
 
@@ -304,44 +307,30 @@ html, body, div {
   font-size: 1.5em;
 }
 
-// casds
+// CARDS
 
 .card-title-container {
   display: inline-flex;
+  align-items: center;
+
+  p {
+    font-size: 2em;
+  }
 
   button {
-    width: auto;
-  }
-}
-
-// user-profile
-.user-info {
-  display: flex;
-  flex-direction: row;
-
-  font-size: 2vh;
-
-  ul {
-    flex: 50%;
-    width: auto;
-
-    .title {
-      color: $form-sub-tile-color;
-    }
-
-    li {
-      padding-top: 2vh;
-    }
-  }
-
-  .buttons-container {
-    align-self: flex-end;
-
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    align-items: center;
 
-    button {
-      margin: 1vh 1vw;
+    height: 2.5em;
+    width: fit-content;
+
+    .icon {
+      width: auto;
+    }
+
+    span {
+      width: 130px;
     }
   }
 }

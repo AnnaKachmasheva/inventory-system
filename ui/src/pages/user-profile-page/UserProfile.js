@@ -3,6 +3,8 @@ import {useAuth} from "../../context/AuthContext";
 import {userApi} from "../../services/api";
 import Sidebar from "../../components/Sidebar";
 import Header from "../../components/Header";
+import {BsTrash} from "react-icons/bs";
+import styles from './UserProfie.module.scss';
 
 
 function UserProfile() {
@@ -41,15 +43,17 @@ function UserProfile() {
 
                 <div className={'content-info'}>
                     <div className={'card-title-container'}>
-                        <h4>Personal information</h4>
+
+                        <p>Personal information</p>
 
                         <button type={'submit'}
-                                className={'btn btn-danger '}>
-                            Delete account
+                                className={'btn btn-danger'}>
+                            <BsTrash className={'icon'}/>
+                            <span>Delete account</span>
                         </button>
                     </div>
 
-                    <div className={'card user-info'}>
+                    <div className={styles.userInfo}>
                         <ul>
                             {titles.map((title, i) => {
                                 return (<li className={'title'} key={i}>{title}</li>);
@@ -67,7 +71,7 @@ function UserProfile() {
 
                         <ul>USER</ul>
 
-                        <div className={'buttons-container'}>
+                        <div className={styles.buttonsContainer}>
                             <button type={'submit'}
                                     className={'btn btn-outline-success edit-btn'}>
                                 Change password
