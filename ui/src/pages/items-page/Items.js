@@ -1,7 +1,5 @@
 import React, {useEffect, useState} from "react"
 import {useAuth} from "../../context/AuthContext";
-import Sidebar from "../../components/Sidebar";
-
 
 function Items() {
 
@@ -24,7 +22,6 @@ function Items() {
 
     return (
         <div className={'content'}>
-            <Sidebar/>
             items
         </div>
     )

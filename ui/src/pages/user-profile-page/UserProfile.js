@@ -1,10 +1,10 @@
 import React, {useEffect, useState} from "react"
 import {useAuth} from "../../context/AuthContext";
 import {userApi} from "../../services/api";
-import Sidebar from "../../components/Sidebar";
-import Header from "../../components/Header";
 import {BsTrash} from "react-icons/bs";
 import styles from './UserProfie.module.scss';
+import Sidebar from "../../components/sidebar/Sidebar";
+import Header from "../../components/header/Header";
 
 
 function UserProfile() {
@@ -36,10 +36,11 @@ function UserProfile() {
     }
 
     return (
-        <div className={'content-container'}>
+        <div className={'contentContainer'}>
             <Sidebar/>
+
             <div className="content">
-                <Header title="User profile"/>
+                <Header title={'User profile'}/>
 
                 <div className={'content-info'}>
                     <div className={'card-title-container'}>

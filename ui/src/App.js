@@ -13,6 +13,8 @@ import Items from "./pages/items-page/Items";
 import Dashboard from "./pages/dashboard-page/Dashboard";
 import Tags from "./pages/tags-page/Tags";
 import Users from "./pages/users-page/Users";
+import Sidebar from "./components/sidebar/Sidebar";
+import Header from "./components/header/Header";
 
 function App() {
     return (
@@ -23,15 +25,15 @@ function App() {
                 <Route path="/registration" element={<SignUp/>}/>
                 <Route path="/reset-password" element={<ResetPassword/>}/>
                 <Route path="/reset-password-confirmation" element={<ResetPasswordConfirmation/>}/>
+                <Route path="*" element={<Navigate to="/"/>}/>
 
                 <Route path="/dashboard" element={<Dashboard to="/"/>}/>
                 <Route path="/items" element={<Items to="/"/>}/>
                 <Route path="/tags" element={<Tags to="/"/>}/>
                 <Route path="/users" element={<Users to="/"/>}/>
                 <Route path="/user-profile" element={<UserProfile to="/"/>}/>
-
-                <Route path="*" element={<Navigate to="/"/>}/>
             </Routes>
+
         </AuthProvider>
     )
 }
