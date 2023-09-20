@@ -22,7 +22,7 @@ target/
 ## React project
 
 # dependencies
-ui/node_modules/
+!**/node_modules/
 /.pnp
 .pnp.js
 
