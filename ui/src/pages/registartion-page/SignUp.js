@@ -132,7 +132,6 @@ function SignUp() {
                                     Wrong data
                                 </span>
 
-
                                 <div className={'form-group'}>
                                     <label>First name</label>
                                     <Field
