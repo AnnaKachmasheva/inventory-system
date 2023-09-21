@@ -33,7 +33,7 @@ const Sidebar = () => {
 export default Sidebar;
 
 
-const iconSizeSidebar = 36;
+const iconSizeSidebar = 28;
 
 class SidebarRow extends Component {
 

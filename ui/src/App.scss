@@ -31,7 +31,6 @@ html, body, div {
 }
 
 // BUTTONS
-
 .btn-primary {
   background: $primary-btn-color;
   border: 0;
@@ -231,41 +230,92 @@ html, body, div {
   height: 100vh;
 
   .content-info {
-    width: 80%;
+    width: auto;
     height: auto;
-    margin: 0 auto;
+    margin-left: 120px;
     padding-top: 10vh;
   }
 }
 
 // CARDS
-
 .card-title-container {
   display: inline-flex;
   align-items: center;
 
   p {
-    font-size: 2em;
+    font-size: 1.6em;
   }
 
   button {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
+    max-width: fit-content;
+  }
+}
 
-    height: 2.5em;
-    width: fit-content;
+button {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 
-    .icon {
-      width: auto;
-    }
+  height: 2.5em;
 
-    span {
-      width: 130px;
-    }
+  .icon {
+    width: auto;
+    margin-right: 10px;
+  }
+
+  span {
+    width: 130px;
   }
 }
 
 ul {
   list-style-type: none;
+}
+
+// MODAL WINDOWS
+.modal {
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+
+  z-index: 100;
+
+  background-color: rgba(0, 0, 0, 0.7);
+
+  .content {
+    width: 35%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+
+    padding: 3vh;
+
+    background-color: white;
+
+    border: 1px solid rgba(0, 0, 0, 0.22);
+    box-sizing: border-box;
+    box-shadow: 3px 4px 15px -1px rgba(0, 0, 0, 0.3);
+    border-radius: 5px;
+
+    .header {
+      flex-basis: 10%;
+
+      font-size: 1.6em;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    }
+
+    .body {
+      margin: 2vh 0;
+    }
+
+    .buttons {
+      display: inline-flex;
+      gap: 3vw;
+    }
+  }
 }
