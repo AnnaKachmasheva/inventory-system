@@ -1,10 +1,14 @@
 import React, {useEffect, useState} from "react"
 import {useAuth} from "../../context/AuthContext";
 import {userApi} from "../../services/api";
-import {BsTrash} from "react-icons/bs";
+import {BsPencil, BsTrash} from "react-icons/bs";
 import styles from './UserProfie.module.scss';
 import Sidebar from "../../components/sidebar/Sidebar";
 import Header from "../../components/header/Header";
+import {MdPassword} from "react-icons/md";
+import {ModalDeleteUserConfirm} from "./modalWindowDeleteUser/ModalDeleteUserConfirm";
+import {ModalEditPassword} from "./modalWindowEditPassword/ModalEditPassword";
+import {ModalEditUser} from "./modalWindowEditUser/ModalEditUser";
 
 
 function UserProfile() {
@@ -13,6 +17,10 @@ function UserProfile() {
     const userToken = Auth.getUserToken();
     const titles = ['First name', 'Last name', 'Email', 'Phone'];
     const [userData, setUserData] = useState([]);
+
+    const [showConfirmDeleteModal, setShowConfirmDeleteModal] = useState(false);
+    const [showChangePasswordModal, setShowChangePasswordModal] = useState(false);
+    const [showUpdateUserdModal, setShowUpdateUserModal] = useState(false);
 
     const user = {
         firstName: 'first',
@@ -37,56 +45,74 @@ function UserProfile() {
 
     return (
         <div className={'contentContainer'}>
+            <ModalDeleteUserConfirm onClose={() => setShowConfirmDeleteModal(false)}
+                                    show={showConfirmDeleteModal}/>
+
+            <ModalEditPassword onClose={() => setShowChangePasswordModal(false)}
+                               show={showChangePasswordModal}/>
+
+            <ModalEditUser onClose={() => setShowUpdateUserModal(false)}
+                           show={showUpdateUserdModal}
+                           firstName={user.firstName}
+                           lastName={user.lastName}
+                           email={user.email}
+                           phone={user.phone}
+            />
+
             <Sidebar/>
 
             <div className="content">
-                <Header title={'User profile'}/>
+                <Header title={'USER PROFILE'}/>
 
-                <div className={'content-info'}>
+                <div className={styles.userProfile}>
                     <div className={'card-title-container'}>
 
                         <p>Personal information</p>
 
                         <button type={'submit'}
-                                className={'btn btn-danger'}>
+                                className={'btn btn-danger'}
+                                onClick={() => setShowConfirmDeleteModal(true)}>
                             <BsTrash className={'icon'}/>
                             <span>Delete account</span>
                         </button>
                     </div>
 
                     <div className={styles.userInfo}>
-                        <ul>
-                            {titles.map((title, i) => {
-                                return (<li className={'title'} key={i}>{title}</li>);
-                            })}
-                        </ul>
+                        <div className={styles.infoColumn}>
+                            <ul className={styles.labels}>
+                                {titles.map((title, i) => {
+                                    return (<li className={'title'} key={i}>{title}</li>);
+                                })}
+                            </ul>
 
-                        <ul>
-                            <li>{user.firstName}</li>
-                            <li>{user.lastName}</li>
-                            <li>{user.email}</li>
-                            <li>{user.phone}</li>
-                        </ul>
+                            <ul>
+                                <li>{user.firstName}</li>
+                                <li>{user.lastName}</li>
+                                <li>{user.email}</li>
+                                <li>{user.phone}</li>
+                            </ul>
+                        </div>
 
-                        <ul className={'title'}>User role</ul>
+                        <div className={styles.infoColumn}>
+                            <ul className={styles.labels}>User role</ul>
 
-                        <ul>USER</ul>
+                            <ul>USER</ul>
+                        </div>
 
                         <div className={styles.buttonsContainer}>
                             <button type={'submit'}
-                                    className={'btn btn-outline-success edit-btn'}>
+                                    className={'btn btn-outline-success edit-btn'}
+                                    onClick={() => setShowChangePasswordModal(true)}>
+                                <MdPassword className={'icon'}/>
                                 Change password
                             </button>
                             <button type={'submit'}
-                                    className={'btn btn-success edit-btn'}>
+                                    className={'btn btn-success edit-btn'}
+                                    onClick={() => setShowUpdateUserModal(true)}>
+                                <BsPencil className={'icon'}/>
                                 Edit
                             </button>
                         </div>
-
-                    </div>
-
-                    <div className={'card user-permission'}>
-
                     </div>
                 </div>
 
@@ -95,4 +121,4 @@ function UserProfile() {
     )
 }
 
-export default UserProfile
+export default UserProfile;
