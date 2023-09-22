@@ -13,8 +13,6 @@ import Items from "./pages/items-page/Items";
 import Dashboard from "./pages/dashboard-page/Dashboard";
 import Tags from "./pages/tags-page/Tags";
 import Users from "./pages/users-page/Users";
-import Sidebar from "./components/sidebar/Sidebar";
-import Header from "./components/header/Header";
 
 function App() {
     return (
