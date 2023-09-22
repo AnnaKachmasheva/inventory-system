@@ -8,9 +8,8 @@
   float: left;
   overflow: hidden;
 
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  display: grid;
+  grid-template-rows: 70px 70px 70px 70px 70px 16px 70px calc(100% - 520px) 70px;
 
   margin: 0;
   padding: 30px 0 0 0;
@@ -27,7 +26,7 @@
 
     text-decoration: none;
     color: white;
-    font-size: 22px;
+    font-size: 20px;
 
     width: 100%;
 
@@ -37,9 +36,21 @@
   p {
     margin: 0 20px 0 0;
     padding: 0;
-    display: none;
   }
 
+  hr {
+    color: white;
+  }
+
+  .logOutBtn {
+    background: none;
+    height: 70px;
+    font-size: 20px;
+    color: white;
+
+    p {
+    }
+  }
 }
 
 .sidebarIcon {
@@ -49,9 +60,6 @@
 
 .sidebarContainer:hover {
 
-  p {
-    display: block;
-  }
 }
 
 .sidebarItem:hover {
@@ -60,4 +68,15 @@
   .sidebarIcon, p {
     color: #219653FF;
   }
+}
+
+.logoContainer {
+  min-width: 10px;
+  min-height: 75px;
+
+  img {
+    width: 200px;
+    margin: 10px 20px 40px 20px;
+  }
+
 }

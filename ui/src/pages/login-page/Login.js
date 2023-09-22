@@ -4,6 +4,9 @@ import {ErrorMessage, Field, Form, Formik} from "formik";
 import * as Yup from 'yup';
 import {userApi} from "../../services/api";
 import {useAuth} from "../../context/AuthContext";
+import logo from '../../assets/logo.png';
+import AuthHeader from "../../components/general/AuthHeader";
+
 
 function Login() {
 
@@ -65,7 +68,7 @@ function Login() {
         <div className={'container'}>
 
             <div className={'main-container'}>
-                <div className={'logo'}>logo</div>
+                <AuthHeader/>
 
                 <div className={'form-container'}>
 

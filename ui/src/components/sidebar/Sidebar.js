@@ -5,27 +5,54 @@ import {PiUsers} from "react-icons/pi";
 import {RxDashboard} from "react-icons/rx";
 import {Link} from "react-router-dom";
 import styles from './Sidebar.module.scss';
+import logo from '../../assets/logo_sidebar.png';
+import {BiLogIn} from "react-icons/bi";
+import {useAuth} from "../../context/AuthContext";
 
 
 const Sidebar = () => {
 
+    const {userLogout} = useAuth()
+
+    const logout = () => {
+        userLogout()
+    }
+
     return (
         <div className={styles.sidebarContainer}>
+            <div className={styles.logoContainer}>
+                <img src={logo}
+                     alt={'logo'}/>
+            </div>
+
             <SidebarRow linkText={'Dashboard'}
                         link={'/dashboard'}
+                        onTop={true}
             />
             <SidebarRow linkText={'Items'}
                         link={'/items'}
+                        onTop={true}
             />
             <SidebarRow linkText={'Tags'}
-                        link={'/tags'}
+                        link={'/app/tags'}
+                        onTop={true}
             />
             <SidebarRow linkText={'Users'}
                         link={'/users'}
+                        onTop={true}
             />
+
+            <hr/>
             <SidebarRow linkText={'Profile'}
                         link={'/user-profile'}
+                        onTop={false}
             />
+            <div/>
+            <button className={'icon '.concat(styles.logOutBtn)} onClick={logout}>
+                <BiLogIn className={styles.sidebarIcon}
+                         size={iconSizeSidebar}/>
+                <p>Log out</p>
+            </button>
         </div>
     );
 };
@@ -60,7 +87,7 @@ class SidebarRow extends Component {
 
     render() {
         return (
-            <Link to={this.props.link}
+            <Link to={'/app' + this.props.link}
                   className={styles.sidebarItem}>
                 {this.renderIcon(this.props.linkText)}
                 <p>{this.props.linkText}</p>

@@ -3,6 +3,7 @@ import * as Yup from "yup";
 import {ErrorMessage, Field, Form, Formik} from "formik";
 import classnames from "classnames";
 import {BsCheckCircle} from "react-icons/bs";
+import AuthHeader from "../../components/general/AuthHeader";
 
 export default function ResetPasswordConfirmation() {
 
@@ -77,7 +78,7 @@ export default function ResetPasswordConfirmation() {
         <div className={'container'}>
 
             <div className={'main-container'}>
-                <div className={'logo'}>logo</div>
+                <AuthHeader/>
 
                 <div className={'form-container'}>
                     <h1 className={'form-title'}>Reset password</h1>

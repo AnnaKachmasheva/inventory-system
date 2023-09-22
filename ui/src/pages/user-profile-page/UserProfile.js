@@ -59,11 +59,8 @@ function UserProfile() {
                            phone={user.phone}
             />
 
-            <Sidebar/>
 
             <div className="content">
-                <Header title={'USER PROFILE'}/>
-
                 <div className={styles.userProfile}>
                     <div className={'card-title-container'}>
 

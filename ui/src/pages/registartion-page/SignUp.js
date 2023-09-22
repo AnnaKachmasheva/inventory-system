@@ -6,6 +6,7 @@ import {BsCheckCircleFill} from "react-icons/bs";
 import classnames from 'classnames';
 import {userApi} from "../../services/api";
 import {useAuth} from "../../context/AuthContext";
+import AuthHeader from "../../components/general/AuthHeader";
 
 
 function SignUp() {
@@ -113,7 +114,7 @@ function SignUp() {
         <div className={'container'}>
 
             <div className={'main-container'}>
-                <div className={'logo'}>logo</div>
+                <AuthHeader/>
 
                 <div className={'form-container'}>
 

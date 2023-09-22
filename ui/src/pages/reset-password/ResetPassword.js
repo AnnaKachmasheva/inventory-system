@@ -2,6 +2,7 @@ import React from "react";
 import * as Yup from "yup";
 import {ErrorMessage, Field, Form, Formik} from "formik";
 import {Link, useNavigate} from "react-router-dom";
+import AuthHeader from "../../components/general/AuthHeader";
 
 export default function ResetPassword() {
     const initialValues = {
@@ -27,7 +28,7 @@ export default function ResetPassword() {
         <div className={'container'}>
 
             <div className={'main-container'}>
-                <div className={'logo'}>logo</div>
+                <AuthHeader/>
 
                 <div className={'form-container'}>
 
