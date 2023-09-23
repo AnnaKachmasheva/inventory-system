@@ -5,8 +5,8 @@ $btn-height: 40px;
 $block-padding: 60px;
 
 $primary-btn-color: #F2994A;
-$primary-btn-color-hover: #c05700;
-$primary-btn-color-active: #f1811c;
+$primary-btn-color-active: #c05700;
+$primary-btn-color-hover: #f1811c;
 $primary-btn-color-disable: rgba(241, 129, 28, 0.5);
 
 
@@ -41,7 +41,7 @@ html, body, div {
 }
 
 .btn-primary:not(:disabled):not(:disabled):active {
-  background: $primary-btn-color-hover;
+  background: $primary-btn-color-active;
 }
 
 // FORM

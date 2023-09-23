@@ -1,0 +1,31 @@
+.navBarContainer {
+  background: #219653;
+  height: auto;
+  display: grid;
+  align-items: center;
+  grid-template-columns: auto calc(100% - 700px) auto auto;
+  padding: 2vh 2vw;
+
+  .logoContainer {
+    width: 315px;
+  }
+
+  .logInBtn, .registrationBtn {
+    width: 170px;
+    height: 38px;
+  }
+
+  .logInBtn {
+    background: white;
+    color: #219653;
+  }
+
+  .logInBtn:hover {
+    background: #f1811c;
+    color: white;
+  }
+
+  .logInBtn:active {
+    background: #c05700;
+  }
+}
