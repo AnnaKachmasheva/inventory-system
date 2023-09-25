@@ -3,6 +3,7 @@ import * as Yup from "yup";
 import {ErrorMessage, Field, Form, Formik} from "formik";
 import {Link, useNavigate} from "react-router-dom";
 import AuthHeader from "../../components/general/AuthHeader";
+import {AiOutlineArrowLeft, AiOutlineArrowRight} from "react-icons/ai";
 
 export default function ResetPassword() {
     const initialValues = {
@@ -63,13 +64,14 @@ export default function ResetPassword() {
 
                                 <button type={'submit'}
                                         disabled={!(dirty && isValid)}
-                                        className={'btn btn-primary'}>
+                                        className={'btn btn-primary base-btn'}>
                                     Send link
+                                    <AiOutlineArrowRight className={'icon'}/>
                                 </button>
 
-                                <button type={'submit'}
-                                        onClick={goBack}
-                                        className={'btn btn-outline-success'}>
+                                <button onClick={goBack}
+                                        className={'btn btn-outline-success base-btn'}>
+                                    <AiOutlineArrowLeft className={'icon'}/>
                                     Back
                                 </button>
 
@@ -86,8 +88,6 @@ export default function ResetPassword() {
                 </div>
 
             </div>
-
-            <div className={'image-form'}></div>
 
         </div>
     )

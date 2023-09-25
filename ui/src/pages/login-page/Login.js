@@ -168,9 +168,6 @@ function Login() {
                     </p>
                 </div>
             </div>
-
-            <div className={'image-form'}></div>
-
         </div>
     )
 }

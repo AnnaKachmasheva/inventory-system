@@ -331,8 +331,6 @@ function SignUp() {
 
             </div>
 
-            <div className={'image-form'}></div>
-
         </div>
     )
 }
