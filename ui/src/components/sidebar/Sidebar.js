@@ -1,4 +1,4 @@
-import React, {Component} from "react";
+import React, {Component, useState} from "react";
 import {BsListUl, BsTags} from "react-icons/bs";
 import {AiOutlineUser} from "react-icons/ai";
 import {PiUsers} from "react-icons/pi";
@@ -18,8 +18,13 @@ const Sidebar = () => {
         userLogout()
     }
 
+    const setSelectedItemStyle = () => {
+
+    }
+
     return (
-        <div className={styles.sidebarContainer}>
+        <div className={styles.sidebarContainer}
+             onClick={setSelectedItemStyle}>
             <div className={styles.logoContainer}>
                 <img src={logo}
                      alt={'logo'}/>
@@ -28,6 +33,7 @@ const Sidebar = () => {
             <SidebarRow linkText={'Dashboard'}
                         link={'/dashboard'}
                         onTop={true}
+
             />
             <SidebarRow linkText={'Items'}
                         link={'/items'}
@@ -36,10 +42,12 @@ const Sidebar = () => {
             <SidebarRow linkText={'Tags'}
                         link={'/app/tags'}
                         onTop={true}
+                        isSeleted={false}
             />
             <SidebarRow linkText={'Users'}
                         link={'/users'}
                         onTop={true}
+                        isSeleted={false}
             />
 
             <hr/>
@@ -89,7 +97,8 @@ class SidebarRow extends Component {
     render() {
         return (
             <Link to={'/app' + this.props.link}
-                  className={styles.sidebarItem}>
+                  className={styles.sidebarItem + ' ' +
+                      (this.props.isSeleted ? styles.selectedItem : styles.notSelectedItem)}>
                 {this.renderIcon(this.props.linkText)}
                 <p>{this.props.linkText}</p>
             </Link>

@@ -20,13 +20,13 @@ const Nav = () => {
                     onClick={() => {
                         navigate(`/login`)
                     }}>
-                Log in
+                LOG IN
             </button>
             <button className={'btn btn-primary '.concat(styles.registrationBtn)}
                     onClick={() => {
                         navigate(`/registration`)
                     }}>
-                Registration
+                REGISTRATION
             </button>
 
         </div>

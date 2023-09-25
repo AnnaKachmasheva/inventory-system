@@ -35,6 +35,24 @@
     transition: all .2s ease;
   }
 
+  .selectedItem {
+    background: white;
+    color: #219653;
+
+    .icon {
+      color: #219653;
+    }
+  }
+
+  .notSelectedItem {
+    background: none;
+    color: white;
+
+    .icon {
+      color: white;
+    }
+  }
+
   p {
     margin: 0 20px 0 0;
     padding: 0;
