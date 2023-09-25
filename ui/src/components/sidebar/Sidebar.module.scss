@@ -31,6 +31,8 @@
     width: 100%;
 
     cursor: pointer;
+
+    transition: all .2s ease;
   }
 
   p {
@@ -43,23 +45,31 @@
   }
 
   .logOutBtn {
-    background: none;
-    height: 70px;
-    font-size: 20px;
     color: white;
+    font-size: 20px;
 
-    p {
+    justify-content: flex-start;
+    padding: 34px 0;
+
+    border: none;
+    border-radius: 0;
+  }
+
+  .logOutBtn:hover {
+    background: white;
+    color: #219653;
+
+    .sidebarIcon {
+      color: #219653;
     }
   }
 }
 
 .sidebarIcon {
-  margin: 0;
+  width: auto;
+  margin: 0 30px;
+
   color: white;
-}
-
-.sidebarContainer:hover {
-
 }
 
 .sidebarItem:hover {

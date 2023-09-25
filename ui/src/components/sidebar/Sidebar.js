@@ -48,10 +48,11 @@ const Sidebar = () => {
                         onTop={false}
             />
             <div/>
-            <button className={'icon '.concat(styles.logOutBtn)} onClick={logout}>
+            <button className={'base-btn btn btn-outline-success '.concat(styles.logOutBtn)}
+                    onClick={logout}>
                 <BiLogIn className={styles.sidebarIcon}
                          size={iconSizeSidebar}/>
-                <p>Log out</p>
+                Log out
             </button>
         </div>
     );
