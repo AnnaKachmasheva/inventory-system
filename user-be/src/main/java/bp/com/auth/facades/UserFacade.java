@@ -1,5 +1,6 @@
 package bp.com.auth.facades;
 
+import bp.com.auth.models.domain.PageUsers;
 import bp.com.auth.models.domain.User;
 import bp.com.auth.models.request.SignInRequest;
 import bp.com.auth.models.request.SignUpRequest;
@@ -47,8 +48,8 @@ public class UserFacade {
         deleteUserUseCase.execute(user);
     }
 
-    public List<User> findAll() {
-        return findAllUsersUseCase.execute();
+    public PageUsers findAll(int page, int size) {
+        return findAllUsersUseCase.execute(page, size);
     }
 
     public User findById(Long id) {

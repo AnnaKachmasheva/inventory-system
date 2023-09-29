@@ -4,13 +4,18 @@ import bp.com.auth.exeptions.NoUserFoundException;
 import bp.com.auth.exeptions.UserAlreadyExistException;
 import bp.com.auth.mappers.User2UserEntityMapper;
 import bp.com.auth.mappers.UserEntity2UserMapper;
+import bp.com.auth.models.domain.PageUsers;
 import bp.com.auth.models.domain.User;
 import bp.com.auth.models.entity.UserEntity;
 import bp.com.auth.models.request.SignInRequest;
 import bp.com.auth.repositories.UserEntityRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.stereotype.Component;
+import org.springframework.data.domain.Pageable;
+
 
 import java.util.List;
 import java.util.Optional;
@@ -56,9 +61,19 @@ public class UserRepositoryAdapterImpl implements UserRepositoryAdapter {
     }
 
     @Override
-    public List<User> findAll() {
-        List<UserEntity> userEntities = userEntityRepository.findAll();
-        return userEntity2UserMapper.toUserList(userEntities);
+    public PageUsers findAll(int page, int size) {
+        Pageable paging = PageRequest.of(page, size);
+
+        Page<UserEntity> pageUserEntities = userEntityRepository.findAll(paging);
+        List<UserEntity> userEntities = pageUserEntities.getContent();
+        List<User> users = userEntity2UserMapper.toUserList(userEntities);
+
+        return PageUsers.builder()
+                .content(users)
+                .totalPages(pageUserEntities.getTotalPages())
+                .isEmpty(pageUserEntities.isEmpty())
+                .totalElements(pageUserEntities.getTotalElements())
+                .build();
     }
 
     @Override

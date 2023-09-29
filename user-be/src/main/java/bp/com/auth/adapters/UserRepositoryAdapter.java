@@ -1,5 +1,6 @@
 package bp.com.auth.adapters;
 
+import bp.com.auth.models.domain.PageUsers;
 import bp.com.auth.models.domain.User;
 import bp.com.auth.models.request.SignInRequest;
 
@@ -13,7 +14,7 @@ public interface UserRepositoryAdapter {
 
     void delete(User user);
 
-    List<User> findAll();
+    PageUsers findAll(int page, int size);
 
     User findById(Long id);
 

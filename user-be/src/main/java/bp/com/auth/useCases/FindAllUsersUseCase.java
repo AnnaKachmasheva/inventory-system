@@ -1,6 +1,7 @@
 package bp.com.auth.useCases;
 
 import bp.com.auth.adapters.UserRepositoryAdapter;
+import bp.com.auth.models.domain.PageUsers;
 import bp.com.auth.models.domain.User;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -14,8 +15,8 @@ public class FindAllUsersUseCase {
 
     private final UserRepositoryAdapter adapter;
 
-    public List<User> execute() {
-        return adapter.findAll();
+    public PageUsers execute(int page, int size) {
+        return adapter.findAll(page, size);
     }
 
 }
