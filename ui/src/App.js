@@ -9,7 +9,6 @@ import ResetPassword from "./pages/reset-password/ResetPassword";
 import ResetPasswordConfirmation from "./pages/reset-password-confirmation/ResetPasswordConfirmation";
 import {AuthProvider} from "./context/AuthContext";
 import {UserRoutes} from "./routes/UserRoutes";
-import Users from "./pages/users-page/Users";
 
 function App() {
 
@@ -24,7 +23,7 @@ function App() {
                 <Route path={'/app/*'} element={<UserRoutes/>}/>
 
                 // todo make it private and only for admin
-                <Route exact path="app/users" element={<Users/>}/>
+                {/*<Route exact path="app/users" element={<Users/>}/>*/}
 
                 <Route path="*" element={<Navigate to="/"/>}/>
             </Routes>

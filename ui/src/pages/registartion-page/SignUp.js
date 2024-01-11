@@ -229,10 +229,10 @@ function SignUp() {
                                                 classnames('row',
                                                     min8Characters ? 'success-color-span' : 'default-color-span')}>
                                                 <BsCheckCircleFill size={22}
-                                                               className={classnames('rule-icon ',
-                                                                   min8Characters ?
-                                                                       'success-color-icon' :
-                                                                       'default-color-icon')}/>
+                                                                   className={classnames('rule-icon ',
+                                                                       min8Characters ?
+                                                                           'success-color-icon' :
+                                                                           'default-color-icon')}/>
                                                 <span className={'w-auto'}>Min. 8 characters</span>
                                             </div>
 
@@ -240,10 +240,10 @@ function SignUp() {
                                                 classnames('row',
                                                     hasNumber ? 'success-color-span' : 'default-color-span')}>
                                                 <BsCheckCircleFill size={22}
-                                                               className={classnames('rule-icon ',
-                                                                   hasNumber ?
-                                                                       'success-color-icon' :
-                                                                       'default-color-icon')}/>
+                                                                   className={classnames('rule-icon ',
+                                                                       hasNumber ?
+                                                                           'success-color-icon' :
+                                                                           'default-color-icon')}/>
                                                 <span className={'w-auto'}>
                                                         A number
                                                     </span>
@@ -257,10 +257,10 @@ function SignUp() {
                                                 classnames('row',
                                                     hasUppercaseLetter ? 'success-color-span' : 'default-color-span')}>
                                                 <BsCheckCircleFill size={22}
-                                                               className={classnames('rule-icon ',
-                                                                   hasUppercaseLetter ?
-                                                                       'success-color-icon' :
-                                                                       'default-color-icon')}/>
+                                                                   className={classnames('rule-icon ',
+                                                                       hasUppercaseLetter ?
+                                                                           'success-color-icon' :
+                                                                           'default-color-icon')}/>
                                                 <span className={'w-auto'}>A uppercase letter</span>
                                             </div>
 
@@ -268,10 +268,10 @@ function SignUp() {
                                                 classnames('row',
                                                     hasLowercaseLetter ? 'success-color-span' : 'default-color-span')}>
                                                 <BsCheckCircleFill size={22}
-                                                               className={classnames('rule-icon ',
-                                                                   hasLowercaseLetter ?
-                                                                       'success-color-icon' :
-                                                                       'default-color-icon')}/>
+                                                                   className={classnames('rule-icon ',
+                                                                       hasLowercaseLetter ?
+                                                                           'success-color-icon' :
+                                                                           'default-color-icon')}/>
                                                 <span className={'w-auto'}>A lowercase letter</span>
                                             </div>
 
@@ -279,10 +279,10 @@ function SignUp() {
                                                 classnames('row',
                                                     hasSymbol ? 'success-color-span' : 'default-color-span')}>
                                                 <BsCheckCircleFill size={22}
-                                                               className={classnames('rule-icon ',
-                                                                   hasSymbol ?
-                                                                       'success-color-icon' :
-                                                                       'default-color-icon')}/>
+                                                                   className={classnames('rule-icon ',
+                                                                       hasSymbol ?
+                                                                           'success-color-icon' :
+                                                                           'default-color-icon')}/>
                                                 <span className={'w-auto'}>A special symbol</span>
                                             </div>
 

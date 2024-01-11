@@ -4,7 +4,6 @@ import {ErrorMessage, Field, Form, Formik} from "formik";
 import * as Yup from 'yup';
 import {userApi} from "../../services/api";
 import {useAuth} from "../../context/AuthContext";
-import logo from '../../assets/logo.png';
 import AuthHeader from "../../components/general/AuthHeader";
 
 
